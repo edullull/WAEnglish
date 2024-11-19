@@ -57,26 +57,38 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 // Incluir el header
 include('../templates/header.php');
 ?>
-
-<main class="container">
-    <h1>Editar Verbo</h1>
-    <form method="POST">
-        <div class="mb-3">
-            <label for="verbo" class="form-label">Verbo</label>
-            <input type="text" class="form-control" name="verbo" value="<?php echo htmlspecialchars($verbo['verbo']); ?>" required>
+<main class="container my-5">
+    <div class="p-2 bg-light shadow rounded text-center">
+        <h1 class="display-6 text-primary fw-bold">Editar Verbo</h1>
+        <p class="lead text-secondary">Realiza los cambios necesarios y guarda las modificaciones.</p>
+    </div>
+    <div class="row justify-content-center mt-4">
+        <div class="col-lg-6 col-md-8">
+            <div class="card shadow border-0">
+                <div class="card-body p-4">
+                    <form method="POST" action="editar_verbo.php?id=<?php echo $id_verbo; ?>">
+                        <div class="mb-3">
+                            <label for="verbo" class="form-label fw-semibold text-primary">Verbo</label>
+                            <input type="text" class="form-control" name="verbo" value="<?php echo $verbo['verbo']; ?>" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="significado" class="form-label fw-semibold text-primary">Significado</label>
+                            <input type="text" class="form-control" name="significado" value="<?php echo $verbo['significado']; ?>" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="ejemplo" class="form-label fw-semibold text-primary">Ejemplo</label>
+                            <input type="text" class="form-control" name="ejemplo" value="<?php echo $verbo['ejemplo']; ?>" required>
+                        </div>
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-primary btn-lg">Guardar Cambios</button>
+                            <a href="verbo.php" class="btn btn-outline-secondary btn-lg">Cancelar</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
-        <div class="mb-3">
-            <label for="significado" class="form-label">Significado</label>
-            <input type="text" class="form-control" name="significado" value="<?php echo htmlspecialchars($verbo['significado']); ?>" required>
-        </div>
-        <div class="mb-3">
-            <label for="ejemplo" class="form-label">Ejemplo Frase</label>
-            <input type="text" class="form-control" name="ejemplo" value="<?php echo htmlspecialchars($verbo['ejemplo']); ?>" required>
-        </div>
-        <button type="submit" class="btn btn-primary">Guardar cambios</button>
-    </form>
+    </div>
 </main>
-
 <?php
 // Incluir el footer
 include('../templates/footer.php');

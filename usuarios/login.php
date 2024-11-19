@@ -29,74 +29,93 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - WebLearnTalk</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <title>Login - WAEnglish</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
-          body {
-            background-color: #f8f9fa;
-            height: 50vh;
+        body {
+            background: linear-gradient(145deg, #66b3ff, #004080); 
+            color: #fff;
             display: flex;
             justify-content: center;
-            align-items: center;
+            align-items: flex-start;
+            height: 100vh;
+            margin: 0;
         }
         .login-container {
-            background-color: white;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+            background: #fff;
+            color: #0056b3;
+            padding: 40px 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            max-width: 400px;
+            width: 100%;
+            text-align: center;
+            margin-top: 10vh; /* Ajuste para elevar la caja */
         }
         .login-container h3 {
-            margin-bottom: 20px;
-            font-weight: bold;
+            font-weight: 800;
             text-transform: uppercase;
-            color: #343a40;
-            text-align: center;
-
+            margin-bottom: 20px;
         }
         .login-container .form-control {
-            border-radius: 50px;
-            padding-left: 20px;
+            background: #f8f9fa;
+            border: none;
+            border-radius: 25px;
+            padding: 10px 15px;
+            font-size: 16px;
         }
-        .btn-primary {
-            border-radius: 50px;
+        .login-container .btn {
+            background: #007bff;
+            color: #fff;
+            border-radius: 25px;
             padding: 10px 20px;
             font-size: 16px;
             font-weight: bold;
+            border: none;
+        }
+        .login-container .btn:hover {
+            background: #0056b3;
         }
         .error-msg {
-            color: red;
-            text-align: center;
+            color: #dc3545;
+            margin-top: 10px;
+        }
+        .footer-link {
+            margin-top: 20px;
+        }
+        .footer-link a {
+            color: #0056b3;
+            font-weight: bold;
+            text-decoration: none;
+        }
+        .footer-link a:hover {
+            text-decoration: underline;
         }
     </style>
 </head>
-<div class="login-container">
+<body>
+    <div class="login-container">
         <h3>Iniciar Sesión</h3>
 
         <?php if (isset($error)) { ?>
-            <div class="error-msg">
-                <?php echo $error; ?>
-            </div>
+            <div class="error-msg"><?php echo $error; ?></div>
         <?php } ?>
 
         <form action="procesar_login.php" method="POST">
-            <div class="form-group">
+            <div class="mb-3">
                 <input type="email" class="form-control" name="email" placeholder="Correo electrónico" required>
             </div>
-            <div class="form-group">
+            <div class="mb-3">
                 <input type="password" class="form-control" name="password" placeholder="Contraseña" required>
             </div>
-            <button type="submit" class="btn btn-primary btn-block">Iniciar sesión</button>
+            <button type="submit" class="btn btn-primary btn-block w-100">Iniciar Sesión</button>
         </form>
 
-        <!-- Enlace para registrar un nuevo usuario -->
-        <div class="mt-3 text-center">
+        <div class="footer-link">
             <p>¿No tienes una cuenta? <a href="register.php">Regístrate aquí</a></p>
         </div>
     </div>
 
- 
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

@@ -56,7 +56,7 @@ include('../templates/nav.php');
                             <td><?php echo htmlspecialchars($verbo_frasal['ejemplo']); ?></td>
                             <td class="text-center">
                                 <!-- Enlace para editar -->
-                                <a href="editar_phrasal_verb.php?id=<?php echo $verbo_frasal['id']; ?>" 
+                                <a href="editar_phrasal_verbs.php?id=<?php echo $verbo_frasal['id']; ?>" 
                                    class="btn btn-warning btn-sm">
                                     <i class="bi bi-pencil-square"></i> Editar
                                 </a>
