@@ -11,56 +11,73 @@ if (!isset($_SESSION['usuario'])) {
 // Incluir la conexión a la base de datos
 include('../conexion.php');
 
-// Recuperar los verbos del usuario
+// Consultar todos los adverbios del usuario actual
 $usuario_id = $_SESSION['usuario_id'];
 $query = "SELECT * FROM frases_comunes WHERE usuario_id = ?";
 $stmt = $conn->prepare($query);
 $stmt->bind_param("i", $usuario_id);
 $stmt->execute();
 $resultado = $stmt->get_result();
-?>
 
-<?php
 // Incluir el header
 include('../templates/nav.php');
 ?>
 
-<main class="container">
-    <h1>Frases comunes</h1>
-    
-    <!-- Botón para agregar nuevo verbo -->
-    <a href="agregar_frases_comunes.php" class="btn btn-primary mb-3">Agregar frases</a>
+<main class="container my-5">
+    <div class="text-center">
+        <h1 class="display-4 text-primary fw-bold">Lista de frases comunes</h1>
+        <p class="lead text-secondary">Consulta, edita o elimina los frases comunes de tu colección personalizada.</p>
+    </div>
 
-    <!-- Mostrar lista de verbos frasales -->
-    <?php if ($resultado->num_rows > 0): ?>
-        <table class="table table-striped">
-            <thead>
+    <div class="d-flex justify-content-end my-4">
+        <a href="agregar_frases_comunes.php" class="btn btn-success btn-lg">
+            <i class="bi bi-plus-circle"></i> Agregar frases comunes
+        </a>
+    </div>
+
+    <div class="table-responsive">
+        <table class="table table-hover table-bordered align-middle">
+            <thead class="table-primary text-center">
                 <tr>
-                    <th>Frases</th>
-                    <th>Ejemplo</th>
-                    <th>Acciones</th>
+                    <th scope="col">Frases comunes</th>
+                    <th scope="col">Significado</th>
+                    <th scope="col">Acciones</th>
                 </tr>
             </thead>
             <tbody>
-                <?php while ($frase_comunes = $resultado->fetch_assoc()): ?>
+                <?php if ($resultado->num_rows > 0): ?>
+                    <?php while ($frase = $resultado->fetch_assoc()) : ?>
+                        <tr>
+                            <td class="fw-bold text-primary"><?php echo htmlspecialchars($frase['frase']); ?></td>
+                            <td><?php echo htmlspecialchars($frase['significado']); ?></td>
+                            <td class="text-center">
+                                <!-- Enlace para editar -->
+                                <a href="editar_frases_comunes.php?id=<?php echo $frase['id']; ?>" 
+                                   class="btn btn-warning btn-sm">
+                                    <i class="bi bi-pencil-square"></i> Editar
+                                </a>
+
+                                <!-- Enlace para eliminar -->
+                                <a href="eliminar_adverbio.php?id=<?php echo $frase['id']; ?>" 
+                                   class="btn btn-danger btn-sm"
+                                   onclick="return confirm('¿Estás seguro de eliminar este adverbio?');">
+                                    <i class="bi bi-trash"></i> Eliminar
+                                </a>
+                            </td>
+                        </tr>
+                    <?php endwhile; ?>
+                <?php else: ?>
                     <tr>
-                        <td><?php echo htmlspecialchars($frase_comunes['frase']); ?></td>
-                        <td><?php echo htmlspecialchars($frase_comunes['significado']); ?></td>
-                        <td>
-                            <!-- Botones para editar o eliminar el verbo frasal -->
-                            <a href="editar_phrasal_verbs.php?id=<?php echo $verbo_frasal['id']; ?>" class="btn btn-warning btn-sm">Editar</a>
-                            <a href="eliminar_verbo_frasal.php?id=<?php echo $verbo['id']; ?>" class="btn btn-danger btn-sm" onclick="return confirm('¿Estás seguro de eliminar este verbo frasal?');">Eliminar</a>
-                        </td>
+                        <td colspan="4" class="text-center text-muted">No se encontraron adverbios en tu colección.</td>
                     </tr>
-                <?php endwhile; ?>
+                <?php endif; ?>
             </tbody>
         </table>
-    <?php else: ?>
-        <p>No has agregado ningún verbo frasal aún.</p>
-    <?php endif; ?>
+    </div>
 </main>
 
 <?php
 // Incluir el footer
 include('../templates/footer.php');
 ?>
+

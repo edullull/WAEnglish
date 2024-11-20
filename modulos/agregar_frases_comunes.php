@@ -32,24 +32,32 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 // Incluir el header
 include('../templates/header.php');
 ?>
-
-<main class="container">
-    <h1>Agregar frase</h1>
-    <form method="POST" action="agregar_frases_comunes.php">
-        <div class="mb-3">
-            <label for="frase" class="form-label">Frase</label>
-            <input type="text" class="form-control" name="frase" required>
+<main class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-7 col-lg-7">
+            <div class="card shadow-sm">
+                <div class="card-header bg-primary text-white">
+                    <h1 class="h4 text-center mb-0">Agregar Frase comun</h1>
+                </div>
+        <div class="card-body">
+            <form method="POST" action="agregar_frases_comunes.php">
+                <div class="mb-3">
+                    <label for="frase" class="form-label fw-bold">Frase común</label>
+                    <input type="text" class="form-control" name="frase" placeholder="Ejemplo: Look up" required>
+                </div>
+                <div class="mb-3">
+                    <label for="significado" class="form-label fw-bold">Significado</label>
+                    <input type="text" class="form-control" name="significado" placeholder="Ejemplo: Buscar información" required>
+                </div>
+                <div class="d-grid gap-2">
+                    <button type="submit" class="btn btn-success">Agregar</button>
+                    <a href="frases_comunes.php" class="btn btn-secondary">Cancelar</a>
+                </div>
+            </form>
         </div>
-        <div class="mb-3">
-            <label for="significado" class="form-label">Significado</label>
-            <input type="text" class="form-control" name="significado" required>
-        </div>
-
-        <button type="submit" class="btn btn-primary">Agregar</button>
-        <a href="frases_comunes.php" class="btn btn-secondary">Cancelar</a>
-
-    </form>
+    </div>
 </main>
+
 
 <?php
 // Incluir el footer

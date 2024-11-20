@@ -37,7 +37,7 @@
             <a class="nav-link text-white fw-semibold" href="phrasal_verbs.php"><i class="bi bi-box-arrow-right"></i> Verbos Frasales</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link text-white fw-semibold" href="frases_comunes.php"><i class="bi bi-box-arrow-right"></i> Frases comunes</a>
+            <a class="nav-link text-white fw-semibold" href="frases_comunes.php"><i class="bi bi-journal"></i> Frases comunes</a>
           </li>
           <li class="nav-item">
             <a class="nav-link text-white fw-semibold" href="../modulos/categorias.php"><i class="bi bi-arrow-bar-left"></i> Volver</a>

@@ -31,7 +31,7 @@ include('../templates/nav.php');
 
     <!-- Botón para agregar un nuevo adverbio -->
     <div class="d-flex justify-content-end my-4">
-        <a href="agregar_adverbio.php" class="btn btn-success btn-lg">
+        <a href="agregar_phrasal_verb.php" class="btn btn-success btn-lg">
             <i class="bi bi-plus-circle"></i> Agregar Verbo Frasal
         </a>
     </div>
