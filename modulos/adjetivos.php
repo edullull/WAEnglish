@@ -56,15 +56,15 @@ include('../templates/nav.php');
                             <td><?php echo htmlspecialchars($adjetivo['ejemplo']); ?></td>
                             <td class="text-center">
                                 <!-- Enlace para editar -->
-                                <a href="editar_adverbio.php?id=<?php echo $adjetivo['id']; ?>" 
+                                <a href="editar_adjetivos.php?id=<?php echo $adjetivo['id']; ?>" 
                                    class="btn btn-warning btn-sm">
                                     <i class="bi bi-pencil-square"></i> Editar
                                 </a>
 
                                 <!-- Enlace para eliminar -->
-                                <a href="eliminar_adverbio.php?id=<?php echo $adjetivo['id']; ?>" 
+                                <a href="eliminar_adjetivos.php?id=<?php echo $adjetivo['id']; ?>" 
                                    class="btn btn-danger btn-sm"
-                                   onclick="return confirm('¿Estás seguro de eliminar este adverbio?');">
+                                   onclick="return confirm('¿Estás seguro de eliminar este adjetivo?');">
                                     <i class="bi bi-trash"></i> Eliminar
                                 </a>
                             </td>

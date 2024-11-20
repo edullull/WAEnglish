@@ -62,9 +62,9 @@ include('../templates/nav.php');
                                 </a>
 
                                 <!-- Enlace para eliminar -->
-                                <a href="eliminar_adverbio.php?id=<?php echo $adverbio['id']; ?>" 
+                                <a href="eliminar_phrasal_verbs.php?id=<?php echo $verbo_frasal['id']; ?>" 
                                    class="btn btn-danger btn-sm"
-                                   onclick="return confirm('¿Estás seguro de eliminar este adverbio?');">
+                                   onclick="return confirm('¿Estás seguro de eliminar este phrasal verbs?');">
                                     <i class="bi bi-trash"></i> Eliminar
                                 </a>
                             </td>

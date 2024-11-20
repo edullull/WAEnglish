@@ -31,7 +31,10 @@
             <a class="nav-link text-white fw-semibold" href="verbos.php"><i class="bi bi-book"></i> Verbos</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link text-white fw-semibold" href="adverbios.php"><i class="bi bi-bookmark"></i> Adverbios</a>
+            <a class="nav-link text-white fw-semibold" href="adverbios.php"><i class="bi bi-flag"></i> Adverbios</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white fw-semibold" href="adjetivos.php"><i class="bi bi-bookmark"></i> Adjetivos</a>
           </li>
           <li class="nav-item">
             <a class="nav-link text-white fw-semibold" href="phrasal_verbs.php"><i class="bi bi-box-arrow-right"></i> Verbos Frasales</a>
