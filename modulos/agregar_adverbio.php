@@ -44,7 +44,7 @@ include('../templates/header.php');
                     <h1 class="h4 text-center mb-0">Agregar Adverbio</h1>
                 </div>
         <div class="card-body">
-            <form method="POST" action="agregar_phrasal_verb.php">
+            <form method="POST" action="agregar_adverbio.php">
                 <div class="mb-3">
                     <label for="adverbio" class="form-label fw-bold">Adverbio</label>
                     <input type="text" class="form-control" name="adverbio" placeholder="Ejemplo: Look up" required>

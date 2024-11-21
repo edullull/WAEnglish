@@ -1,8 +1,6 @@
 <?php
-// Iniciar sesión
 session_start();
 
-// Verificar si el usuario ha iniciado sesión
 if (!isset($_SESSION['usuario'])) {
     header('Location: ../usuarios/login.php');
     exit;
@@ -18,7 +16,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $ejemplo = $_POST['ejemplo'];
     $usuario_id = $_SESSION['usuario_id']; // ID del usuario que ha iniciado sesión
 
-    // Insertar el nuevo verbo frasal en la base de datos
     $query = "INSERT INTO adjetivos (adjetivo, significado, ejemplo, usuario_id) VALUES (?, ?, ?, ?)";
     $stmt = $conn->prepare($query);
     $stmt->bind_param("sssi", $adjetivo, $significado, $ejemplo, $usuario_id);
@@ -32,7 +29,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
-// Incluir el header
 include('../templates/header.php');
 ?>
 

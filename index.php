@@ -12,7 +12,7 @@ if (!isset($_SESSION['usuario'])) {
 $url_base = "http://localhost/weblearntalk/";
 
 // Incluir el header con la sesión activa
-include("templates/header.php");
+include("templates/navIndex.php");
 ?>
 
 <main class="container my-5">

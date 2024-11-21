@@ -47,15 +47,15 @@ include('../templates/header.php');
             <form method="POST" action="agregar_phrasal_verb.php">
                 <div class="mb-3">
                     <label for="phrasal_verb" class="form-label fw-bold">Verbo</label>
-                    <input type="text" class="form-control" name="phrasal_verb" placeholder="Ejemplo: Look up" required>
+                    <input type="text" class="form-control" name="phrasal_verb" placeholder="Ecribe un ejemplo" required>
                 </div>
                 <div class="mb-3">
                     <label for="significado" class="form-label fw-bold">Significado</label>
-                    <input type="text" class="form-control" name="significado" placeholder="Ejemplo: Buscar información" required>
+                    <input type="text" class="form-control" name="significado" placeholder="Ecribe un ejemplo" required>
                 </div>
                 <div class="mb-3">
                     <label for="ejemplo" class="form-label fw-bold">Ejemplo</label>
-                    <textarea class="form-control" name="ejemplo" rows="3" placeholder="Escribe un ejemplo del uso del verbo frasal" required></textarea>
+                    <textarea class="form-control" name="ejemplo" rows="3" placeholder="Ecribe un ejemplo" required></textarea>
                 </div>
                 <div class="d-grid gap-2">
                     <button type="submit" class="btn btn-success">Agregar</button>
