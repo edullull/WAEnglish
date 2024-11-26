@@ -2,16 +2,13 @@
 // Iniciar sesión
 session_start();
 
-// Verificar si el usuario ha iniciado sesión
 if (!isset($_SESSION['usuario'])) {
     header('Location: ../usuarios/login.php');
     exit;
 }
 
-// Incluir la conexión a la base de datos
 include('../conexion.php');
 
-// Consultar todos los adverbios del usuario actual
 $usuario_id = $_SESSION['usuario_id'];
 $query = "SELECT * FROM adjetivos WHERE usuario_id = ?";
 $stmt = $conn->prepare($query);
@@ -29,14 +26,12 @@ include('../templates/nav.php');
         <p class="lead text-secondary">Consulta, edita o elimina los adjetivos de tu colección personalizada.</p>
     </div>
 
-    <!-- Botón para agregar un nuevo adverbio -->
     <div class="d-flex justify-content-end my-4">
         <a href="agregar_adjetivos.php" class="btn btn-success btn-lg">
             <i class="bi bi-plus-circle"></i> Agregar Adjetivos
         </a>
     </div>
 
-    <!-- Tabla para mostrar los adverbios -->
     <div class="table-responsive">
         <table class="table table-hover table-bordered align-middle">
             <thead class="table-primary text-center">
@@ -55,13 +50,11 @@ include('../templates/nav.php');
                             <td><?php echo htmlspecialchars($adjetivo['significado']); ?></td>
                             <td><?php echo htmlspecialchars($adjetivo['ejemplo']); ?></td>
                             <td class="text-center">
-                                <!-- Enlace para editar -->
                                 <a href="editar_adjetivos.php?id=<?php echo $adjetivo['id']; ?>" 
                                    class="btn btn-warning btn-sm">
                                     <i class="bi bi-pencil-square"></i> Editar
                                 </a>
 
-                                <!-- Enlace para eliminar -->
                                 <a href="eliminar_adjetivos.php?id=<?php echo $adjetivo['id']; ?>" 
                                    class="btn btn-danger btn-sm"
                                    onclick="return confirm('¿Estás seguro de eliminar este adjetivo?');">

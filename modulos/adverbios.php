@@ -2,16 +2,13 @@
 // Iniciar sesión
 session_start();
 
-// Verificar si el usuario ha iniciado sesión
 if (!isset($_SESSION['usuario'])) {
     header('Location: ../usuarios/login.php');
     exit;
 }
 
-// Incluir la conexión a la base de datos
 include('../conexion.php');
 
-// Consultar todos los adverbios del usuario actual
 $usuario_id = $_SESSION['usuario_id'];
 $query = "SELECT * FROM adverbios WHERE usuario_id = ?";
 $stmt = $conn->prepare($query);

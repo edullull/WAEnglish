@@ -16,15 +16,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $verbo = $_POST['verbo'];
     $significado = $_POST['significado'];
     $ejemplo = $_POST['ejemplo'];
-    $usuario_id = $_SESSION['usuario_id']; // ID del usuario que ha iniciado sesión
-
-    // Insertar el nuevo verbo frasal en la base de datos
+    $usuario_id = $_SESSION['usuario_id']; 
     $query = "INSERT INTO verbo (verbo, significado, ejemplo, usuario_id) VALUES (?, ?, ?, ?)";
     $stmt = $conn->prepare($query);
     $stmt->bind_param("sssi", $verbo, $significado, $ejemplo, $usuario_id);
 
     if ($stmt->execute()) {
-        // Redirigir a la página de verbos frasales después de agregar el verbo
         header('Location: verbos.php');
         exit;
     } else {
@@ -32,7 +29,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
-// Incluir el header
 include('../templates/header.php');
 ?>
 
@@ -67,6 +63,5 @@ include('../templates/header.php');
 </main>
 
 <?php
-// Incluir el footer
 include('../templates/footer.php');
 ?>

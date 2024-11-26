@@ -1,30 +1,27 @@
 <?php
-// Iniciar sesión
 session_start();
 
-// Verificar si el usuario ha iniciado sesión
+
 if (!isset($_SESSION['usuario'])) {
     header('Location: ../usuarios/login.php');
     exit;
 }
 
-// Incluir la conexión a la base de datos
+
 include('../conexion.php');
 
-// Procesar el formulario al recibir una solicitud POST
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $adverbio = $_POST['adverbio'];
     $significado = $_POST['significado'];
     $ejemplo = $_POST['ejemplo'];
-    $usuario_id = $_SESSION['usuario_id']; // ID del usuario que ha iniciado sesión
+    $usuario_id = $_SESSION['usuario_id']; 
 
-    // Insertar el nuevo verbo frasal en la base de datos
     $query = "INSERT INTO adverbios (adverbio, significado, ejemplo, usuario_id) VALUES (?, ?, ?, ?)";
     $stmt = $conn->prepare($query);
     $stmt->bind_param("sssi", $adverbio, $significado, $ejemplo, $usuario_id);
 
     if ($stmt->execute()) {
-        // Redirigir a la página de verbos frasales después de agregar el verbo
         header('Location: adverbios.php');
         exit;
     } else {
@@ -32,7 +29,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
-// Incluir el header
 include('../templates/header.php');
 ?>
 

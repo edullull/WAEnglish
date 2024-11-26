@@ -1,17 +1,13 @@
 <?php
-// Iniciar sesión
 session_start();
 
-// Verificar si el usuario ha iniciado sesión
 if (!isset($_SESSION['usuario'])) {
     header('Location: ../usuarios/login.php');
     exit;
 }
 
-// Incluir la conexión a la base de datos
 include('../conexion.php');
 
-// Verificar si se ha pasado un ID válido
 if (isset($_GET['id'])) {
     $id_adjetivo = $_GET['id'];
 
@@ -31,19 +27,16 @@ if (isset($_GET['id'])) {
     exit;
 }
 
-// Actualizar los datos si se envía el formulario
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $nuevo_adjetivo = $_POST['adjetivo'];
     $nuevo_significado = $_POST['significado'];
     $nuevo_ejemplo = $_POST['ejemplo'];
 
-    // Actualizar el adverbio en la base de datos
     $query = "UPDATE adjetivos SET adjetivo = ?, significado = ?, ejemplo = ? WHERE id = ?";
     $stmt = $conn->prepare($query);
     $stmt->bind_param("sssi", $nuevo_adjetivo, $nuevo_significado, $nuevo_ejemplo, $id_adjetivo);
 
     if ($stmt->execute()) {
-        // Redirigir a la página anterior después de guardar
         header('Location: adjetivos.php');  
         exit;
     } else {
@@ -51,7 +44,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
-// Incluir el header
 include('../templates/header.php');
 ?>
 
@@ -89,6 +81,5 @@ include('../templates/header.php');
 </main>
 
 <?php
-// Incluir el footer
 include('../templates/footer.php');
 ?>

@@ -6,22 +6,20 @@ if (!isset($_SESSION['usuario'])) {
     exit;
 }
 
-// Incluir la conexión a la base de datos
 include('../conexion.php');
 
-// Procesar el formulario al recibir una solicitud POST
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $adjetivo = $_POST['adjetivo']; 
     $significado = $_POST['significado'];
     $ejemplo = $_POST['ejemplo'];
-    $usuario_id = $_SESSION['usuario_id']; // ID del usuario que ha iniciado sesión
+    $usuario_id = $_SESSION['usuario_id']; 
 
     $query = "INSERT INTO adjetivos (adjetivo, significado, ejemplo, usuario_id) VALUES (?, ?, ?, ?)";
     $stmt = $conn->prepare($query);
     $stmt->bind_param("sssi", $adjetivo, $significado, $ejemplo, $usuario_id);
 
     if ($stmt->execute()) {
-        // Redirigir a la página de verbos frasales después de agregar el verbo
         header('Location: adjetivos.php');
         exit;
     } else {
@@ -63,6 +61,5 @@ include('../templates/header.php');
 </main>
 
 <?php
-// Incluir el footer
 include('../templates/footer.php');
 ?>

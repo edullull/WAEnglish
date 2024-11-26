@@ -1,21 +1,16 @@
 <?php
-// Iniciar sesión
 session_start();
 
-// Verificar si el usuario ha iniciado sesión
 if (!isset($_SESSION['usuario'])) {
     header('Location: ../usuarios/login.php');
     exit;
 }
 
-// Incluir la conexión a la base de datos
 include('../conexion.php');
 
-// Verificar si se ha pasado un ID válido
 if (isset($_GET['id'])) {
     $id_adverbio = $_GET['id'];
 
-    // Obtener los datos del adverbio seleccionado
     $query = "SELECT * FROM adverbios WHERE id = ?";
     $stmt = $conn->prepare($query);
     $stmt->bind_param("i", $id_adverbio);
@@ -23,7 +18,6 @@ if (isset($_GET['id'])) {
     $resultado = $stmt->get_result();
     $adverbio = $resultado->fetch_assoc();
 
-    // Verificar si el adverbio existe
     if (!$adverbio) {
         echo "<div class='alert alert-danger'>El adverbio no existe.</div>";
         exit;
@@ -33,19 +27,16 @@ if (isset($_GET['id'])) {
     exit;
 }
 
-// Actualizar los datos si se envía el formulario
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $nuevo_adverbio = $_POST['adverbio'];
     $nuevo_significado = $_POST['significado'];
     $nuevo_ejemplo = $_POST['ejemplo'];
 
-    // Actualizar el adverbio en la base de datos
     $query = "UPDATE adverbios SET adverbio = ?, significado = ?, ejemplo = ? WHERE id = ?";
     $stmt = $conn->prepare($query);
     $stmt->bind_param("sssi", $nuevo_adverbio, $nuevo_significado, $nuevo_ejemplo, $id_adverbio);
 
     if ($stmt->execute()) {
-        // Redirigir a la página anterior después de guardar
         header('Location: adverbios.php');
         exit;
     } else {
@@ -53,7 +44,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
-// Incluir el header
 include('../templates/header.php');
 ?>
 
@@ -91,6 +81,5 @@ include('../templates/header.php');
 </main>
 
 <?php
-// Incluir el footer
 include('../templates/footer.php');
 ?>

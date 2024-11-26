@@ -1,30 +1,24 @@
 <?php
-// Iniciar sesión
 session_start();
 
-// Verificar si el usuario ha iniciado sesión
 if (!isset($_SESSION['usuario'])) {
     header('Location: ../usuarios/login.php');
     exit;
 }
 
-// Incluir la conexión a la base de datos
 include('../conexion.php');
 
-// Verificar si se ha proporcionado el ID del verbo a editar
 if (isset($_GET['id'])) {
     $id_verbo = $_GET['id'];
 
-    // Preparar la consulta para obtener los datos del verbo
     $query = "SELECT * FROM verbos WHERE id = ? AND usuario_id = ?";
     $stmt = $conn->prepare($query);
     $stmt->bind_param("ii", $id_verbo, $_SESSION['usuario_id']);
     $stmt->execute();
     $resultado = $stmt->get_result();
 
-    // Verificar si se encontró el verbo
     if ($resultado->num_rows > 0) {
-        $verbo = $resultado->fetch_assoc(); // Obtener los datos del verbo
+        $verbo = $resultado->fetch_assoc(); 
     } else {
         echo "No se encontró el verbo o no tienes permiso para editarlo.";
         exit;
@@ -34,19 +28,16 @@ if (isset($_GET['id'])) {
     exit;
 }
 
-// Procesar el formulario cuando se envía
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $nuevo_verbo = $_POST['verbo'];
     $nuevo_significado = $_POST['significado'];
     $nuevo_ejemplo = $_POST['ejemplo'];
 
-    // Actualizar el verbo en la base de datos
     $query = "UPDATE verbos SET verbo = ?, significado = ?, ejemplo = ? WHERE id = ? AND usuario_id = ?";
     $stmt = $conn->prepare($query);
     $stmt->bind_param("sssii", $nuevo_verbo, $nuevo_significado, $nuevo_ejemplo, $id_verbo, $_SESSION['usuario_id']);
 
     if ($stmt->execute()) {
-        // Redirigir a la página de verbos después de guardar los cambios
         header('Location: verbos.php');
         exit;
     } else {
@@ -54,7 +45,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
-// Incluir el header
 include('../templates/header.php');
 ?>
 <main class="container my-5">
@@ -90,6 +80,5 @@ include('../templates/header.php');
     </div>
 </main>
 <?php
-// Incluir el footer
 include('../templates/footer.php');
 ?>

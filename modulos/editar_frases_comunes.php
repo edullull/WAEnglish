@@ -1,21 +1,16 @@
 <?php
-// Iniciar sesión
 session_start();
 
-// Verificar si el usuario ha iniciado sesión
 if (!isset($_SESSION['usuario'])) {
     header('Location: ../usuarios/login.php');
     exit;
 }
 
-// Incluir la conexión a la base de datos
 include('../conexion.php');
 
-// Verificar si se ha pasado un ID válido
 if (isset($_GET['id'])) {
     $id_frase = $_GET['id'];
 
-    // Obtener los datos del adverbio seleccionado
     $query = "SELECT * FROM frases_comunes WHERE id = ?";
     $stmt = $conn->prepare($query);
     $stmt->bind_param("i", $id_frase);
@@ -23,7 +18,6 @@ if (isset($_GET['id'])) {
     $resultado = $stmt->get_result();
     $frase = $resultado->fetch_assoc();
 
-    // Verificar si el adverbio existe
     if (!$frase) {
         echo "<div class='alert alert-danger'>La frase comun no existe.</div>";
         exit;
@@ -33,18 +27,15 @@ if (isset($_GET['id'])) {
     exit;
 }
 
-// Actualizar los datos si se envía el formulario
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $nueva_frase = $_POST['frase'];
     $nuevo_significado = $_POST['significado'];
 
-    // Actualizar el adverbio en la base de datos
     $query = "UPDATE frases_comunes SET frase = ?, significado = ? WHERE id = ?";
     $stmt = $conn->prepare($query);
     $stmt->bind_param("ssi", $nueva_frase, $nuevo_significado, $id_frase);
 
     if ($stmt->execute()) {
-        // Redirigir a la página anterior después de guardar
         header('Location: frases_comunes.php');
         exit;
     } else {
@@ -52,7 +43,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
-// Incluir el header
 include('../templates/header.php');
 ?>
 
@@ -86,6 +76,5 @@ include('../templates/header.php');
 </main>
 
 <?php
-// Incluir el footer
 include('../templates/footer.php');
 ?>

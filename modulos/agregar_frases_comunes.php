@@ -1,14 +1,11 @@
 <?php
-// Iniciar sesión
 session_start();
 
-// Verificar si el usuario ha iniciado sesión
 if (!isset($_SESSION['usuario'])) {
     header('Location: ../usuarios/login.php');
     exit;
 }
 
-// Incluir la conexión a la base de datos
 include('../conexion.php');
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -16,7 +13,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $significado = $_POST['significado'];
     $usuario_id = $_SESSION['usuario_id'];
 
-    // Insertar el nuevo adverbio en la base de datos
     $query = "INSERT INTO frases_comunes (frase, significado, usuario_id) VALUES (?, ?, ?)";
     $stmt = $conn->prepare($query);
     $stmt->bind_param("ssi", $frase, $significado, $usuario_id);
@@ -29,7 +25,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
-// Incluir el header
 include('../templates/header.php');
 ?>
 <main class="container mt-5">
@@ -60,6 +55,5 @@ include('../templates/header.php');
 
 
 <?php
-// Incluir el footer
 include('../templates/footer.php');
 ?>
